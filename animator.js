@@ -7,6 +7,7 @@ class Animator {
         this.currentRow = 0;
         this.nextFrame = 1;
         this.numRows = Math.ceil(frameCount/framesPerRow);
+        // console.log("CREATED SPRITE: " + xStart + ", " + yStart + ", " + width + ", " + height + ", " + frameCount + ", " + frameDuration + ", " + framesPerRow + ", " + sizeMultiplier);
     };
 
     drawFrame(tick, ctx, x, y, scale) {

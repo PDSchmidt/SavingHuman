@@ -72,8 +72,8 @@ class GameEngine {
             this.rightclick = getXandY(e);
         });
 
-        this.ctx.canvas.addEventListener("keydown", event => this.keys[event.key] = true);
-        this.ctx.canvas.addEventListener("keyup", event => this.keys[event.key] = false);
+        this.ctx.canvas.addEventListener("keydown", event => {this.keys[event.key] = true; console.log("down " + event.key)});
+        this.ctx.canvas.addEventListener("keyup", event => {this.keys[event.key] = false; console.log("up " + event.key)});
     };
 
     addEntity(entity) {

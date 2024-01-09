@@ -4,7 +4,7 @@ class Dog {
         // walk
         // this.animator = new Animator(ASSET_MANAGER.getAsset("./DogWalk.png"), 0, 0, 64, 64, 7, .1, 7, 1);
         this.x = 0;
-        this.y = 0;
+        this.y = 128 + 48;
         this.speed = 0;
         // this.speed = 50;
         this.facing = 0; // 0 = right, 1 = left
@@ -36,14 +36,16 @@ class Dog {
     }
     
     update() {
+        let shiftSpeed = 0;
+        if (this.game.keys["Shift"] == true) shiftSpeed = 100;
         if (this.game.keys["a"] == true) {
             this.facing = 1;
             this.state = 1;
-            this.speed = -50;
+            this.speed = -50 -shiftSpeed;
         } else if (this.game.keys["d"] == true) {
             this.facing = 0;
             this.state = 1;
-            this.speed = 50;
+            this.speed = 50 + shiftSpeed;
         } else {
             this.state = 0;
             this.speed = 0;

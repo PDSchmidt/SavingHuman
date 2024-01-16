@@ -2,13 +2,15 @@ const gameEngine = new GameEngine();
 
 const ASSET_MANAGER = new AssetManager();
 
-ASSET_MANAGER.queueDownload("./NightSky.png");
-ASSET_MANAGER.queueDownload("./Tree.png");
-ASSET_MANAGER.queueDownload("./TreeL.png");
-ASSET_MANAGER.queueDownload("./DogIdle.png");
-ASSET_MANAGER.queueDownload("./DogIdleL.png");
-ASSET_MANAGER.queueDownload("./DogWalk.png");
-ASSET_MANAGER.queueDownload("./DogWalkL.png");
+ASSET_MANAGER.queueDownload("Sprites/Environment/NightSky.png");
+ASSET_MANAGER.queueDownload("Sprites/Environment/Tree.png");
+ASSET_MANAGER.queueDownload("Sprites/Environment/TreeL.png");
+ASSET_MANAGER.queueDownload("Sprites/Dog/DogIdle.png");
+ASSET_MANAGER.queueDownload("Sprites/Dog/DogIdleL.png");
+ASSET_MANAGER.queueDownload("Sprites/Dog/DogWalk.png");
+ASSET_MANAGER.queueDownload("Sprites/Dog/DogWalkL.png");
+ASSET_MANAGER.queueDownload("Sprites/Dog/DogRunv2.png");
+ASSET_MANAGER.queueDownload("Sprites/Dog/DogRunv2L.png");
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");

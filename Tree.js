@@ -3,9 +3,9 @@ class Tree {
         this.game = game;
         this.animator = null;
         if (!flipped) {
-            this.animator = new Animator(ASSET_MANAGER.getAsset("./Tree.png"), 0, 0, 128, 256, 1, 1, 1, 1);
+            this.animator = new Animator(ASSET_MANAGER.getAsset("Sprites/Environment/Tree.png"), 0, 0, 128, 256, 1, 1, 1, 1);
         } else {
-            this.animator = new Animator(ASSET_MANAGER.getAsset("./TreeL.png"), 0, 0, 128, 256, 1, 1, 1, 1);
+            this.animator = new Animator(ASSET_MANAGER.getAsset("Sprites/Environment/TreeL.png"), 0, 0, 128, 256, 1, 1, 1, 1);
         }
         this.x = x;
         this.y = y;

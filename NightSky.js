@@ -2,7 +2,7 @@ class NightSky {
     constructor (game, x, y) {
         this.game = game;
         this.animator = null;
-        this.animator = new Animator(ASSET_MANAGER.getAsset("./NightSky.png"), 0, 0, 1024, 768, 1, 1, 1, 1);
+        this.animator = new Animator(ASSET_MANAGER.getAsset("Sprites/Environment/NightSky.png"), 0, 0, 1024, 768, 1, 1, 1, 1);
         this.x = x;
         this.y = y;
     };

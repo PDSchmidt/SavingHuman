@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mode 7 Effect</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="mode7Canvas" width="400" height="300"></canvas>
+
+  <script>
+    const canvas = document.getElementById('mode7Canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Mode 7 transformation parameters
+    const scale = 2;
+    const angle = 45; // Angle in degrees
+
+    // Apply Mode 7 transformation to a point (x, y)
+    function mode7Transform(x, y) {
+      const radianAngle = (angle * Math.PI) / 180;
+      const cosA = Math.cos(radianAngle);
+      const sinA = Math.sin(radianAngle);
+
+      const newX = (x * cosA - y * sinA) * scale;
+      const newY = (x * sinA + y * cosA) * scale;
+
+      return { x: newX, y: newY };
+    }
+
+    // Draw a simple object in Mode 7 perspective
+    function drawMode7Object() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const objectWidth = 20;
+      const objectHeight = 20;
+
+      // Original object coordinates
+      const x = 0; // Centered at (0, 0) for simplicity
+      const y = 0;
+
+      // Apply Mode 7 transformation
+      const transformed = mode7Transform(x, y);
+
+      // Draw the transformed object
+      ctx.fillStyle = 'blue';
+      ctx.fillRect(canvas.width / 2 + transformed.x - objectWidth / 2, canvas.height / 2 + transformed.y - objectHeight / 2, objectWidth, objectHeight);
+    }
+
+    // Redraw on resize
+    window.addEventListener('resize', drawMode7Object);
+
+    // Initial draw
+    drawMode7Object();
+  </script>
+</body>
+</html>

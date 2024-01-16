@@ -17,7 +17,7 @@ class Dog {
     };
 
     loadAnimations() {
-        for (var i = 0; i < 2; i++) { // 2 states
+        for (var i = 0; i < 3; i++) { // 3 states
             this.animations.push([]);
             for (var j = 0; j < 2; j++) { // two directions
                 this.animations[i].push([]);
@@ -26,13 +26,18 @@ class Dog {
 
         // idle animation for state = 0
         // facing right = 0, left = 1
-        this.animations[0][0] = new Animator(ASSET_MANAGER.getAsset("./DogIdle.png"), 0, 0, 64, 64, 3, .3, 3, 1);
-        this.animations[0][1] = new Animator(ASSET_MANAGER.getAsset("./DogIdleL.png"), 0, 0, 64, 64, 3, .3, 3, 1);
+        this.animations[0][0] = new Animator(ASSET_MANAGER.getAsset("Sprites/Dog/DogIdle.png"), 0, 0, 64, 64, 3, .3, 3, 1);
+        this.animations[0][1] = new Animator(ASSET_MANAGER.getAsset("Sprites/Dog/DogIdleL.png"), 0, 0, 64, 64, 3, .3, 3, 1);
 
         // walk animation for state = 1
         // walking right = 0, left = 1
-        this.animations[1][0] = new Animator(ASSET_MANAGER.getAsset("./DogWalk.png"), 0, 0, 64, 64, 7, .1, 7, 1);
-        this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("./DogWalkL.png"), 0, 0, 64, 64, 7, .1, 7, 1);
+        this.animations[1][0] = new Animator(ASSET_MANAGER.getAsset("Sprites/Dog/DogWalk.png"), 0, 0, 64, 64, 7, .1, 7, 1);
+        this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("Sprites/Dog/DogWalkL.png"), 0, 0, 64, 64, 7, .1, 7, 1);
+
+        // run animation for state = 2
+        // running right = 0, left = 1
+        this.animations[2][0] = new Animator(ASSET_MANAGER.getAsset("Sprites/Dog/DogRunv2.png"), 0, 0, 64, 64, 10, .1, 12, 1);
+        this.animations[2][1] = new Animator(ASSET_MANAGER.getAsset("Sprites/Dog/DogRunv2L.png"), 0, 0, 64, 64, 10, .1, 12, 1);
 
     }
     
@@ -40,7 +45,7 @@ class Dog {
         let shiftSpeed = 0;
         this.speed = 0;
         if (this.game.keys["Shift"] == true) {
-            shiftSpeed = 100;
+            shiftSpeed = 200;
             if (this.game.keys["a"] || this.game.keys["A"])  {
                 this.game.keys["a"] = false;
                 this.game.keys["A"] = true;
@@ -82,6 +87,8 @@ class Dog {
             this.speed = 0;
         }
         this.x += this.speed * this.game.clockTick;
+        if(this.speed > 50 || this.speed < -50) this.state = 2;
+
         this.speed = 0;
         if (this.x > 1024) this.x = 0;
     };

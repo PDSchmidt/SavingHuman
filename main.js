@@ -15,11 +15,12 @@ ASSET_MANAGER.queueDownload("Sprites/Human/HumanWalkL.png");
 ASSET_MANAGER.queueDownload("Sprites/Human/HumanWalkR.png");
 ASSET_MANAGER.queueDownload("Sprites/Dog/DogRunv2.png");
 ASSET_MANAGER.queueDownload("Sprites/Dog/DogRunv2L.png");
+ASSET_MANAGER.queueDownload("./Sounds/Bop.wav");
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
-
+	// ASSET_MANAGER.autoRepeat("./Sounds/Solomn2.wav");
 	
 	let reversed = true;
 	for (let i = 0; i < 10; i++) {
@@ -34,6 +35,5 @@ ASSET_MANAGER.downloadAll(() => {
 	}
 	gameEngine.addEntity(new NightSky(gameEngine, 0, 0));
 	gameEngine.init(ctx);
-
 	gameEngine.start();
 });

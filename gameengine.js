@@ -15,6 +15,8 @@ class GameEngine {
         this.wheel = null;
         this.keys = {};
         this.doggo = null;
+        this.right = false;
+        this.left = false;
         // Options and the Details
         this.options = options || {
             debugging: false,
@@ -72,10 +74,22 @@ class GameEngine {
             this.rightclick = getXandY(e);
         });
 
-        this.ctx.canvas.addEventListener("keydown", event => {this.keys[event.key] = true; console.log("down " + event.key)});
+        this.ctx.canvas.addEventListener("keydown", event => {
+            this.keys[event.key] = true;
+            if(event.key=="a" || event.key=="A") this.left=true;
+            if(event.key=="d" || event.key=="D") this.right=true;
+            if(event.key=="m") loopify("./Sounds/Solomn2.wav", function(err, loop) {
+                if (err) {
+                    console.log(err);
+                }
+                loop.play();
+            });
+            console.log("down " + event.key)});
         this.ctx.canvas.addEventListener("keyup", event => {
             this.keys[event.key] = false;
             console.log("up " + event.key);
+            if(event.key=="a" || event.key=="A") this.left=false;
+            if(event.key=="d" || event.key=="D") this.right=false;
             if (event.key == "a" || event.key == "d") {
                 // this.doggo.speed = 0;
                 console.log(this.doggo.speed);

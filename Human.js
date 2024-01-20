@@ -26,18 +26,40 @@ class Human {
 
         // idle animation for state = 0
         // facing right = 0, left = 1
-        this.animations[0][0] = new Animator(ASSET_MANAGER.getAsset("Sprites/Human/HumanIdleR.png"), 0, 0, 64, 64, 3, .5, 4, 1);
-        this.animations[0][1] = new Animator(ASSET_MANAGER.getAsset("Sprites/Human/HumanIdleL.png"), 0, 0, 64, 64, 3, .5, 4, 1);
+        this.animations[0][0] = new Animator(ASSET_MANAGER.getAsset("Sprites/Human/HumanIdleR.png"), 0, 0, 64, 64, 4, .5, 4, 1);
+        this.animations[0][1] = new Animator(ASSET_MANAGER.getAsset("Sprites/Human/HumanIdleL.png"), 0, 0, 64, 64, 4, .5, 4, 1);
 
         // walk animation for state = 1
         // walking right = 0, left = 1
-        this.animations[1][0] = new Animator(ASSET_MANAGER.getAsset("Sprites/Human/HumanWalkR.png"), 0, 0, 64, 64, 7, .1, 4, 1);
-        this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("Sprites/Human/HumanWalkL.png"), 0, 0, 64, 64, 7, .1, 4, 1);
+        this.animations[1][0] = new Animator(ASSET_MANAGER.getAsset("Sprites/Human/HumanWalkR.png"), 0, 0, 64, 64, 4, .1, 4, 1);
+        this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("Sprites/Human/HumanWalkL.png"), 0, 0, 64, 64, 4, .1, 4, 1);
 
     }
     
     update() {
-        
+        let shiftSpeed = 0;
+        this.speed = 0;
+        if (this.game.keys["Shift"]) {
+            shiftSpeed = 200;
+        }
+        if (this.game.left) {
+            this.facing = 1;
+            this.state = 1;
+            this.speed = -50 -shiftSpeed;
+            // console.log("here5");
+        } else if (this.game.right) {
+            this.facing = 0;
+            this.state = 1;
+            this.speed = 50 + shiftSpeed;
+            // console.log("here6");
+        } else {
+            this.state = 0;
+            this.speed = 0;
+        }
+        this.x += this.speed * this.game.clockTick;
+        // if(this.speed > 50 || this.speed < -50) this.state = 2;
+        this.speed = 0;
+        if (this.x > 1024 || this.x < 0) this.x = 0;
     };
 
     draw(ctx) {
